@@ -66,6 +66,8 @@ smart-todo-app/
 2. Navigate to the project folder.
 3. Open `index.html` in your browser.
 
+4.([Todo App Live Demo](https://v1-of-todo-app.netlify.app/))
+
 ---
 
 ## 📌 Version
