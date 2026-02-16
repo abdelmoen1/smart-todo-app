@@ -60,7 +60,7 @@ smart-todo-app/
 
 1. Clone the repository:
 
-(git-clone) https://github.com/abdelmoen1/smart-todo-app.git
+([git-clone] (https://github.com/abdelmoen1/smart-todo-app.git))
 
 
 2. Navigate to the project folder.
