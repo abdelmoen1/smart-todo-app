@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ===== Meta Configuration ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <!-- Website Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- ===== Stylesheets ===== -->
+    <!-- Normalize CSS (should be loaded BEFORE main style) -->
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="CSS/style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="CSS/all.min.css">
+
+    <!-- ===== Google Fonts Preconnect for performance ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+
+<body>
+    <!-- ===== Main Application Wrapper ===== -->
+    <!-- ===== Main Application Wrapper ===== -->
+    <div class="container">
+
+        <!-- ===== Header Section ===== -->
+        <header>
+            <h1>Todo List</h1>
+
+            <!-- Theme / Background Toggle Button -->
+            <!-- Converted to button for accessibility instead of div -->
+            <button class="bg-color" type="button" aria-label="Toggle theme">
+                <i class="fa-solid" aria-hidden="true"></i>
+            </button>
+        </header>
+        <!-- ===== Add Task Form ===== -->
+        <!-- role="form" is implicit but added aria-label for screen readers -->
+        <form action="#" aria-label="Add new task form">
+
+            <!-- Accessible label (visually hidden via CSS if needed) -->
+            <label for="text-input" class="visually-hidden"></label>
+            <!-- Text Input Field -->
+            <input type="text" id="text-input" name="task" placeholder="Write a new task..." required
+                aria-required="true" autocomplete="off">
+            <input type="submit" value="Add Task">
+        </form>
+        <!-- ===== Main Content Area ===== -->
+        <main class="main-fundation">
+
+            <!-- ===== Tasks List Section ===== -->
+            <!-- role="list" improves screen reader interpretation -->
+            <section class="tasks-fundation" aria-live="polite" aria-label="Task list">
+                <!-- Tasks will be injected dynamically -->
+            </section>
+            <!-- ===== Footer Controls Section ===== -->
+            <section class="btns-fundation">
+
+                <!-- Remaining Items Counter -->
+                <div class="show-left-items">
+                    <span aria-live="polite">0</span> items left
+                </div>
+                <!-- Filter Buttons -->
+                <div class="btns-status" role="group" aria-label="Filter tasks">
+
+                    <!-- Using buttons instead of divs for accessibility -->
+                    <button class="all-btn active" type="button" aria-pressed="true">
+                        All
+                    </button>
+
+                    <button class="active-btn" type="button" aria-pressed="false">
+                        Active
+                    </button>
+
+                    <button class="completed-btn" type="button" aria-pressed="false">
+                        Completed
+                    </button>
+                </div>
+
+                <!-- Clear Completed Button -->
+                <button class="clear-btn" type="button">
+                    Clear Completed
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="JS/main.js"></script>
+</body>
+
+</html>

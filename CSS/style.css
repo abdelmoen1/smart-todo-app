@@ -1,0 +1,412 @@
+/* =====================================================
+   =============== GLOBAL RESET ========================
+   Ensure consistent box model across the app
+===================================================== */
+* {
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   =============== CSS VARIABLES =======================
+   Centralized design tokens (colors)
+===================================================== */
+:root {
+    --main-bg-color: #e2ded5;
+    --actves-color: #3F51B5;
+    --check-color: #4CAF50;
+
+    /* Dark mode palette */
+    --main-bg-dark: hsl(235, 21%, 11%);
+    --fundation-dark: hsl(235, 24%, 19%);
+    --task-dark-color: hsl(235deg 35.99% 12.93%);
+}
+
+/* =====================================================
+   =============== BODY THEMING ========================
+   Theme switching controlled via JS (light / dark)
+===================================================== */
+body {
+    background-color: var(--main-bg-color);
+    font-family: 'Josefin Sans', Tahoma, sans-serif;
+}
+
+body.light {
+    background-color: var(--main-bg-color);
+}
+
+body.dark {
+    background-color: var(--main-bg-dark);
+    color: white;
+}
+
+/* =====================================================
+   =============== LAYOUT CONTAINER ====================
+===================================================== */
+.container {
+    padding: 0 15px;
+    position: relative;
+    margin: 30px auto;
+}
+
+/* Responsive container widths */
+@media (min-width:600px) {
+    .container {
+        width: 500px;
+    }
+}
+
+@media (min-width:700px) {
+    .container {
+        width: 600px;
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        width: 800px;
+    }
+}
+
+/* =====================================================
+   ================= HEADER ============================
+===================================================== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header button {
+    background-color: transparent;
+    border: none;
+}
+
+body.dark header i {
+    color: white;
+}
+
+header i {
+    --fa: "\f186";
+    font-size: 20px;
+}
+
+header h1 {
+    margin: 15px 0;
+}
+
+/* Theme toggle clickable area */
+.bg-color {
+    cursor: pointer;
+}
+
+body.dark header i {
+    color: white;
+}
+
+/* =====================================================
+   ================= FORM ==============================
+   Input + Add Task button styling
+===================================================== */
+form {
+    font-size: 14px;
+    position: relative;
+}
+
+/* Circle indicator (input + task checkbox share style) */
+form label,
+.task span {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    transition: 0.3s ease;
+}
+
+/* Base input styling */
+form input {
+    width: 73%;
+    padding: 10px;
+    border: 1px solid #AAA;
+    border-radius: 7px;
+}
+
+form input:focus {
+    outline: none;
+}
+
+/* Text input spacing for circle */
+form #text-input {
+    padding-left: 35px;
+}
+
+/* Submit button */
+form input:last-child {
+    width: 25%;
+    cursor: pointer;
+    border: none;
+    background-color: var(--actves-color);
+    color: white;
+}
+
+/* Dark mode input */
+body.dark form input:first-of-type {
+    background-color: var(--fundation-dark);
+    border: 1px solid var(--fundation-dark);
+    color: white;
+}
+
+body.dark form input:first-of-type::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive font scaling */
+@media (min-width:600px) {
+    form {
+        font-size: 18px;
+    }
+}
+
+@media (min-width:1200px) {
+    form input {
+        width: 80%;
+    }
+
+    form input:last-child {
+        width: 19%;
+    }
+}
+
+/* =====================================================
+   ================= TASKS SECTION =====================
+===================================================== */
+.main-fundation {
+    background-color: white;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 7px;
+}
+
+body.dark .main-fundation {
+    background-color: var(--fundation-dark);
+}
+
+/* Individual Task Card */
+.task {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ededed;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+body.dark .task {
+    background-color: var(--task-dark-color);
+}
+
+/* Task text */
+.task .task-text {
+    padding: 10px 25px;
+    opacity: 0.7;
+    width: 76%;
+}
+
+.task:hover .task-text {
+    opacity: 1;
+}
+
+/* Completed state */
+.task .task-text.done {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* Edit input */
+.task .edit-input {
+    margin-left: 25px;
+    border-radius: 5px;
+    padding: 5px;
+    width: calc(76% - 25px);
+}
+
+.task .edit-input:focus {
+    outline: none;
+}
+
+/* Action buttons hidden by default */
+.task button {
+    border: none;
+    padding: 5px 10px;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 7px;
+    visibility: hidden;
+    transition: 0.3s ease;
+    opacity: 0.6;
+}
+
+/* Show edit buttons when editing */
+.task .edit-buttons button {
+    visibility: visible;
+}
+
+/* Reveal buttons on hover */
+.task:hover button {
+    visibility: visible;
+}
+
+.task button:hover {
+    opacity: 1;
+}
+
+/* Light mode button color */
+body.light .task button {
+    color: black;
+}
+
+/* Dark mode button color */
+body.dark .task button {
+    color: white    ;
+}
+
+/* Checkbox completed style */
+.task span.done {
+    background-color: var(--check-color);
+    border-color: var(--check-color) !important;
+}
+
+.task span.done i {
+    transform: translate(3px, 2px);
+}
+
+/* Hover feedback */
+.task:hover span,
+body.dark .task:hover span {
+    border-color: var(--check-color);
+}
+
+/* Dark mode checkbox border */
+body.dark label,
+body.dark .task span {
+    border-color: white;
+}
+
+/* Danger hover effect */
+.task .main-buttons button:last-of-type:hover i,
+.task .edit-buttons button:last-of-type:hover i {
+    color: red;
+}
+
+
+@media (min-width:600px) {
+    .task {
+        font-size: 18px;
+    }
+
+    .task span i {
+        font-size: 14px;
+        transform: translate(2px, -2px) !important;
+    }
+
+    .task .edit-input {
+        width: calc(82% - 30px);
+    }
+
+    .task-text {
+        width: 82% !important;
+    }
+}
+
+
+@media (min-width:1200px) {
+
+    .task .edit-input {
+        width: calc(87% - 30px);
+    }
+
+    .task-text {
+        width: 88% !important;
+    }
+}
+
+
+/* =====================================================
+   ================= FILTER BUTTONS ====================
+===================================================== */
+.btns-fundation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-top: 20px;
+}
+
+.btns-status {
+    display: flex;
+    gap: 15px;
+    cursor: pointer;
+}
+
+/* Filter buttons */
+.btns-fundation button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.3s ease;
+}
+
+.btns-fundation button:hover {
+    opacity: 1;
+}
+
+/* Active filter */
+.btns-fundation button.active {
+    color: var(--actves-color);
+    font-weight: bold;
+    opacity: 1;
+}
+
+body.dark .btns-fundation button:not(button.active) {
+    color: white;
+}
+
+/* =====================================================
+   ================= ERROR STATE =======================
+===================================================== */
+.error {
+    color: #e81000;
+    position: absolute;
+    top: 52%;
+    font-size: 12px;
+    left: 4%;
+}
+
+form input:first-of-type.inputError {
+    border-color: #e81000 !important;
+    margin-bottom: 10px;
+}
+
+form label.labError {
+    border-color: #e81000 !important;
+    transform: translateY(-15px);
+}
+
+/* Force hidden attribute behavior */
+[hidden] {
+    display: none !important;
+}
+
+@media (min-width:600px) {
+    .btns-fundation {
+        font-size: 14px;
+    }
+}
